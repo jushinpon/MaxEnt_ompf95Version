@@ -1,0 +1,36 @@
+ ***MC steps:           10
+ Total MC moves:           10
+ Accepted MC moves:           10
+ Accepted_ratio:    1.0000000000000000     
+ Desired_ratio:   0.69959998807311063     
+ current_ratio > desired_upper
+ Old kT:    1000.0000000000000     
+ Adjusted kT:    500.00000000000000     
+ 
+ ***MC steps:           20
+ Total MC moves:           10
+ Accepted MC moves:           10
+ Accepted_ratio:    1.0000000000000000     
+ Desired_ratio:   0.69919998806715011     
+ current_ratio > desired_upper
+ Old kT:    500.00000000000000     
+ Adjusted kT:    250.00000000000000     
+ 
+ ***MC steps:           30
+ Total MC moves:           10
+ Accepted MC moves:           10
+ Accepted_ratio:    1.0000000000000000     
+ Desired_ratio:   0.69879998806118970     
+ current_ratio > desired_upper
+ Old kT:    250.00000000000000     
+ Adjusted kT:    125.00000000000000     
+ 
+ ***MC steps:           40
+ Total MC moves:           10
+ Accepted MC moves:           10
+ Accepted_ratio:    1.0000000000000000     
+ Desired_ratio:   0.69839998805522918     
+ current_ratio > desired_upper
+ Old kT:    125.00000000000000     
+ Adjusted kT:    62.500000000000000     
+ 
