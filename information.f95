@@ -19,7 +19,6 @@ real*8 xl,yl,zl,half_xl,half_yl,half_zl,rlist,confentropy,real_lattice
 real*8 Entmin,kT,Entkeep,acceptratio,filterValue ! for MC
 integer nadjust,naccept,keepNo ! for MC and counter for keeping ID with the large scoring values 
 integer,allocatable:: keepeID(:) ! keep ID with the large scoring values
-logical second,supercell
 
 contains
 !*********************************************
@@ -45,6 +44,13 @@ read(112,*) pbcx,pbcy,pbcz
 read(112,*)! rlist for cell list 
 read(112,*)rlist
 write(*,*)'rlist: ', rlist
+
+read(112,*)! rdf peak(5)
+do 9 i=1,5
+	read(112,*)rdfpeak(i)
+	write(*,*)"rdfpeak ",i,rdfpeak(i)
+9 continue
+
 read(112,*)!element type for HEA
 read(112,*)elemtype
 write(*,*)'element type for HEA: ',elemtype
@@ -73,22 +79,10 @@ read(112,*)!#! data file name, if buildWay is cfg or data
 read(112,*)filename
 write(*,*)'file name to read for cfg or data: ',trim(filename)
 
-read(112,*)!#! need to supercell or not
-read(112,*)supercell
-write(*,*)'supercell: ',supercell
-
-read(112,*)!#! N x N x N
-read(112,*)nx,ny,nz
-write(*,*)nx,ny,nz
-
-read(112,*)!second neighbor
-read(112,*)second
-write(*,*)'weight of second: ',second
-
 select case (trim(buildWay))
    
 case ('cfg') 
-      print*, "read cfg file"
+    print*, "read cfg file"
     open(1111,file= trim(filename),status='old')  
 	read(1111,*) !ITEM: TIMESTEP	
 	read(1111,*) ! timestep
@@ -105,24 +99,13 @@ close(112)  ! close the handle of 00input.dat
 
 case ('data')
     print*, "read data file"
-	if(supercell)then 
-    	open(111,file= trim(filename),status='old')  
-		read(111,*) ! comment
-		read(111,*)snatom
-		read(111,*) elemtype
-		read(111,*)xlo, xhi
-		read(111,*)ylo, yhi
-		read(111,*)zlo, zhi
-		natom=snatom*nx*ny*nz
-	else
-	    open(111,file= trim(filename),status='old')  
-		read(111,*) ! comment
-		read(111,*)natom
-		read(111,*) elemtype
-		read(111,*)xlo, xhi
-		read(111,*)ylo, yhi
-		read(111,*)zlo, zhi
-	endif
+	open(111,file= trim(filename),status='old')  
+	read(111,*) ! comment
+	read(111,*)natom
+	read(111,*) elemtype
+	read(111,*)xlo, xhi
+	read(111,*)ylo, yhi
+	read(111,*)zlo, zhi
 
 	print*,"xlo, xhi: ",xlo, xhi
 	print*,"ylo, yhi: ",ylo, yhi
@@ -205,64 +188,30 @@ case ('cfg')
 	
 case ('data')
 	read(111,*) tempChar!skip ATOMs
-	if(supercell)then
-		do 190 i=1,snatom
-    		read(111,*)aid(i),tempatype(i),sx(i),sy(i),sz(i)
-    		!write(*,*)aid(i),tempatype(i),sx(i),sy(i),sz(i)
-		190 continue
+	!print*,tempChar
+	do 100 i=1,natom
+		read(111,*)id_atom,itempatype,tempx,tempy,tempz !If id not sorted by lammps       
+		x(id_atom)=tempx
+		y(id_atom)=tempy
+		z(id_atom)=tempz
+		atype(id_atom)=itempatype
+		if(i == natom)then
+			write(*,*)"show the coordinates of last atom for check"
+			write(*,*)id_atom,atype(id_atom),x(id_atom),y(id_atom),z(id_atom) !If id not sorted by lammps       
+        endif 
+	100 continue
+    close(111) ! close data file handle
+	!move all atoms within the box
+	x = x - minval(x)
+	y = y - minval(y)
+	z = z - minval(z)
 
-		IDcounter = 0
-		do 191 i=1,nx
-		    do 192 j=1,ny
-		        do 193 k=1,nz
-		            do 194 l=1,snatom
-		                IDcounter = IDcounter + 1
-						x(IDcounter)= sx(l) + xhi*(i-1) 
-						y(IDcounter)= sy(l) + yhi*(j-1) 
-						z(IDcounter)= sz(l) + zhi*(k-1)	
-						atype(IDcounter)= tempatype(l)
-		                !write(*,*)IDcounter,atype(IDcounter),x(IDcounter),y(IDcounter),z(IDcounter)
-		            194 continue
-		        193 continue
-		    192 continue
-		191 continue
-		close(111)
-		x = x - minval(x)
-		y = y - minval(y)
-		z = z - minval(z)
-
-		xl = (xhi-xlo)*nx
-		yl = (yhi-ylo)*ny
-		zl = (zhi-zlo)*nz
-		half_xl = xl/2.d0    
-		half_yl = yl/2.d0    
-		half_zl = zl/2.d0
-	else
-		!print*,tempChar
-		do 100 i=1,natom
-			read(111,*)id_atom,itempatype,tempx,tempy,tempz !If id not sorted by lammps       
-			x(id_atom)=tempx
-			y(id_atom)=tempy
-			z(id_atom)=tempz
-			atype(id_atom)=itempatype
-			if(i == natom)then
-				write(*,*)"show the coordinates of last atom for check"
-				write(*,*)id_atom,atype(id_atom),x(id_atom),y(id_atom),z(id_atom) !If id not sorted by lammps       
-    	    endif 
-		100 continue
-    	close(111) ! close data file handle
-		!move all atoms within the box
-		x = x - minval(x)
-		y = y - minval(y)
-		z = z - minval(z)
-
-		xl = xhi-xlo
-		yl = yhi-ylo
-		zl = zhi-zlo
-		half_xl = xl/2.d0    
-		half_yl = yl/2.d0    
-		half_zl = zl/2.d0
-	endif
+	xl = xhi-xlo
+	yl = yhi-ylo
+	zl = zhi-zlo
+	half_xl = xl/2.d0    
+	half_yl = yl/2.d0    
+	half_zl = zl/2.d0
 	
 case ('default')
 	IDcounter = 0
@@ -334,11 +283,11 @@ allocate(CN_ID(natom,5,50)) ! consider five neighbor types and corresponding IDs
 !rdfpeak(3)=5.3
 !rdfpeak(4)=10
 !rdfpeak(5)=10
-rdfpeak(1)=0.87
-rdfpeak(2)=1.0
-rdfpeak(3)=1.4
-rdfpeak(4)=1.65
-rdfpeak(5)=1.73
+!rdfpeak(1)=0.87
+!rdfpeak(2)=1.0
+!rdfpeak(3)=1.4
+!rdfpeak(4)=1.65
+!rdfpeak(5)=1.73
 
 !write(*,*)'3'
 !!!!!!!!!!!!!!

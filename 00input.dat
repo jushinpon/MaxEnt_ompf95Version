@@ -1,50 +1,35 @@
 # The input file for MaxEnt developed by Prof. Shin-Pon Ju
 ####### begin below
 #!the total MC iteration times,te total initial random search times
-10000 10
+5000 10
 #! PBC in x, y, and z
 True True True 
 #! rlist for cell list for the third nearest neighbour atoms
-1.25
+3.75
+#! rdf peak(5)
+2.575
+2.975
+4.225
+4.925
+5.925
 #!element type for HEA
 5
 #!element fractions
-1
-1
-1
-1
-1
+20.6
+21.7
+21.1
+15.6
+21.0
 #! need to assign atom types or not(True or False)
 True
 #! how you build your structure (cfg, data, or default)
-default
+cfg
 #! data file name (If the above is default, this is fake)
-777.cfg
-#! need to supercell or not(True or False)
-False
-#! N x N x N (supercell for data)
-50 50 50
-#! use exclude second neighbor(True or False)
-True
+20.cfg
 # ! atom number per unit cell
-4
+2
 #! fractional coordinates of each atom in the unit cellp
 0.0 0.0 0.0
-0.0 0.5 0.5
-0.5 0.0 0.5
-0.5 0.5 0.0
+0.5 0.5 0.5
 #! nx ny nz (the replicate times in x, y, and z dimensions)
-100 100 100
-
-# MC迭代次數 初始亂數次數(預設為10)
-# x y z 是否使用週期性邊界
-# 搜尋鄰近
-# type有多少
-# 元素比例
-# 是否打亂原子
-# 結構產生方式 (預設 cfg data)
-# 讀檔檔案名稱
-# 是否supercell
-# 要supercell多少
-# False為排除第一鄰近較快的方式 True為排除第二鄰近較快的方式
-# 
+30 30 30
