@@ -5,31 +5,14 @@
 #! PBC in x, y, and z
 True True True 
 #! rlist for cell list for the third nearest neighbour atoms
-3.75
-#! rdf peak(5)
-2.575
-2.975
-4.225
-4.925
-5.925
-#!element type for HEA
-5
-#!element fractions
-20.6
-21.7
-21.1
-15.6
-21.0
-#! need to assign atom types or not(True or False)
-True
-#! how you build your structure (cfg, data, or default)
-cfg
-#! data file name (If the above is default, this is fake)
-20.cfg
-# ! atom number per unit cell
-2
-#! fractional coordinates of each atom in the unit cellp
-0.0 0.0 0.0
-0.5 0.5 0.5
-#! nx ny nz (the replicate times in x, y, and z dimensions)
-30 30 30
+7.5
+#!rdf peak(5) found by Ovito
+4.5
+6.5
+7.5
+8.6
+9.5
+#!total atom number and element type number for HEA
+4
+#!box information (xlo xhi...), only rectangular one is supported.
+

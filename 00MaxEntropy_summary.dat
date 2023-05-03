@@ -1,28 +1,376 @@
  Randomly Shuffle process
  The searched configuration No :            1
  Shuffle Steps:            1
- ***current normalized configurational entropy:    3.3889300355011469E-002
+ ***current normalized configurational entropy:    3.0211226851851851     
  
- ***N1:        7527
+ ***N1:       10441
  Randomly Shuffle process
  The searched configuration No :            2
- Shuffle Steps:            5
- ***current normalized configurational entropy:    3.3785745963067104E-002
+ Shuffle Steps:            4
+ ***current normalized configurational entropy:    2.9916087962962963     
  
- ***N1:        7504
+ ***N1:       10339
+ Randomly Shuffle process
+ The searched configuration No :            3
+ Shuffle Steps:            5
+ ***current normalized configurational entropy:    2.9866898148148149     
+ 
+ ***N1:       10322
+ Randomly Shuffle process
+ The searched configuration No :            4
+ Shuffle Steps:            8
+ ***current normalized configurational entropy:    2.9600694444444446     
+ 
+ ***N1:       10230
  ***** The following is MC output
  
  #MC process at MC step:           1
  The searched configuration No :            1
- ***current normalized configurational entropy:    1.3507094601439407E-005
- ***N1:           3
- KeepNo in SCF sub:           6 natom:      444211 fraction:    1.3507094601439407E-005
+ ***current normalized configurational entropy:    1.0613425925925926     
+ ***N1:        3668
+ KeepNo in SCF sub:        5274 natom:        6912 fraction:   0.76302083333333337     
  
  #MC process at MC step:           2
  The searched configuration No :            2
- ***current normalized configurational entropy:    0.0000000000000000     
- ***N1:           0
- KeepNo in SCF sub:           0 natom:      444211 fraction:    0.0000000000000000     
- ***keepNo = 0, All atoms with larger scoring values have been processed!!***
- YOU CAN TERMINATE YOUR CODE after several more MC runs  !!!!!!!!!!!
+ ***current normalized configurational entropy:   0.99508101851851849     
+ ***N1:        3439
+ KeepNo in SCF sub:        5021 natom:        6912 fraction:   0.72641782407407407     
  
+ #MC process at MC step:           3
+ The searched configuration No :            3
+ ***current normalized configurational entropy:   0.94357638888888884     
+ ***N1:        3261
+ KeepNo in SCF sub:        4847 natom:        6912 fraction:   0.70124421296296291     
+ 
+ #MC process at MC step:           4
+ The searched configuration No :            4
+ ***current normalized configurational entropy:   0.90740740740740744     
+ ***N1:        3136
+ KeepNo in SCF sub:        4695 natom:        6912 fraction:   0.67925347222222221     
+ 
+ #MC process at MC step:           5
+ The searched configuration No :            5
+ ***current normalized configurational entropy:   0.88802083333333337     
+ ***N1:        3069
+ KeepNo in SCF sub:        4643 natom:        6912 fraction:   0.67173032407407407     
+ 
+ #MC process at MC step:           6
+ The searched configuration No :            6
+ ***current normalized configurational entropy:   0.86313657407407407     
+ ***N1:        2983
+ KeepNo in SCF sub:        4528 natom:        6912 fraction:   0.65509259259259256     
+ 
+ #MC process at MC step:           7
+ The searched configuration No :            7
+ ***current normalized configurational entropy:   0.83969907407407407     
+ ***N1:        2902
+ KeepNo in SCF sub:        4427 natom:        6912 fraction:   0.64048032407407407     
+ 
+ #MC process at MC step:           8
+ The searched configuration No :            8
+ ***current normalized configurational entropy:   0.82089120370370372     
+ ***N1:        2837
+ KeepNo in SCF sub:        4320 natom:        6912 fraction:   0.62500000000000000     
+ 
+ #MC process at MC step:           9
+ The searched configuration No :            9
+ ***current normalized configurational entropy:   0.80555555555555558     
+ ***N1:        2784
+ KeepNo in SCF sub:        4244 natom:        6912 fraction:   0.61400462962962965     
+ 
+ #MC process at MC step:          10
+ The searched configuration No :           10
+ ***current normalized configurational entropy:   0.79340277777777779     
+ ***N1:        2742
+ KeepNo in SCF sub:        4179 natom:        6912 fraction:   0.60460069444444442     
+ 
+ #MC process at MC step:          11
+ The searched configuration No :           11
+ ***current normalized configurational entropy:   0.76851851851851849     
+ ***N1:        2656
+ KeepNo in SCF sub:        4087 natom:        6912 fraction:   0.59129050925925930     
+ 
+ #MC process at MC step:          12
+ The searched configuration No :           12
+ ***current normalized configurational entropy:   0.74826388888888884     
+ ***N1:        2586
+ KeepNo in SCF sub:        4021 natom:        6912 fraction:   0.58174189814814814     
+ 
+ #MC process at MC step:          13
+ The searched configuration No :           13
+ ***current normalized configurational entropy:   0.73900462962962965     
+ ***N1:        2554
+ KeepNo in SCF sub:        3937 natom:        6912 fraction:   0.56958912037037035     
+ 
+ #MC process at MC step:          14
+ The searched configuration No :           14
+ ***current normalized configurational entropy:   0.72714120370370372     
+ ***N1:        2513
+ KeepNo in SCF sub:        3913 natom:        6912 fraction:   0.56611689814814814     
+ 
+ #MC process at MC step:          15
+ The searched configuration No :           15
+ ***current normalized configurational entropy:   0.71498842592592593     
+ ***N1:        2471
+ KeepNo in SCF sub:        3851 natom:        6912 fraction:   0.55714699074074070     
+ 
+ #MC process at MC step:          16
+ The searched configuration No :           16
+ ***current normalized configurational entropy:   0.70254629629629628     
+ ***N1:        2428
+ KeepNo in SCF sub:        3809 natom:        6912 fraction:   0.55107060185185186     
+ 
+ #MC process at MC step:          17
+ The searched configuration No :           17
+ ***current normalized configurational entropy:   0.69068287037037035     
+ ***N1:        2387
+ KeepNo in SCF sub:        3735 natom:        6912 fraction:   0.54036458333333337     
+ 
+ #MC process at MC step:          18
+ The searched configuration No :           18
+ ***current normalized configurational entropy:   0.68084490740740744     
+ ***N1:        2353
+ KeepNo in SCF sub:        3700 natom:        6912 fraction:   0.53530092592592593     
+ 
+ #MC process at MC step:          19
+ The searched configuration No :           19
+ ***current normalized configurational entropy:   0.66984953703703709     
+ ***N1:        2315
+ KeepNo in SCF sub:        3667 natom:        6912 fraction:   0.53052662037037035     
+ 
+ #MC process at MC step:          20
+ The searched configuration No :           20
+ ***current normalized configurational entropy:   0.66059027777777779     
+ ***N1:        2283
+ KeepNo in SCF sub:        3607 natom:        6912 fraction:   0.52184606481481477     
+ 
+ #MC process at MC step:          21
+ The searched configuration No :           21
+ ***current normalized configurational entropy:   0.65104166666666663     
+ ***N1:        2250
+ KeepNo in SCF sub:        3556 natom:        6912 fraction:   0.51446759259259256     
+ 
+ #MC process at MC step:          22
+ The searched configuration No :           22
+ ***current normalized configurational entropy:   0.64728009259259256     
+ ***N1:        2237
+ KeepNo in SCF sub:        3522 natom:        6912 fraction:   0.50954861111111116     
+ 
+ #MC process at MC step:          23
+ The searched configuration No :           23
+ ***current normalized configurational entropy:   0.63368055555555558     
+ ***N1:        2190
+ KeepNo in SCF sub:        3451 natom:        6912 fraction:   0.49927662037037035     
+ 
+ #MC process at MC step:          24
+ The searched configuration No :           24
+ ***current normalized configurational entropy:   0.62702546296296291     
+ ***N1:        2167
+ KeepNo in SCF sub:        3433 natom:        6912 fraction:   0.49667245370370372     
+ 
+ #MC process at MC step:          25
+ The searched configuration No :           25
+ ***current normalized configurational entropy:   0.62181712962962965     
+ ***N1:        2149
+ KeepNo in SCF sub:        3398 natom:        6912 fraction:   0.49160879629629628     
+ 
+ #MC process at MC step:          26
+ The searched configuration No :           26
+ ***current normalized configurational entropy:   0.61400462962962965     
+ ***N1:        2122
+ KeepNo in SCF sub:        3371 natom:        6912 fraction:   0.48770254629629628     
+ 
+ #MC process at MC step:          27
+ The searched configuration No :           27
+ ***current normalized configurational entropy:   0.60474537037037035     
+ ***N1:        2090
+ KeepNo in SCF sub:        3313 natom:        6912 fraction:   0.47931134259259262     
+ 
+ #MC process at MC step:          28
+ The searched configuration No :           28
+ ***current normalized configurational entropy:   0.59837962962962965     
+ ***N1:        2068
+ KeepNo in SCF sub:        3289 natom:        6912 fraction:   0.47583912037037035     
+ 
+ #MC process at MC step:          29
+ The searched configuration No :           29
+ ***current normalized configurational entropy:   0.59259259259259256     
+ ***N1:        2048
+ KeepNo in SCF sub:        3253 natom:        6912 fraction:   0.47063078703703703     
+ 
+ #MC process at MC step:          30
+ The searched configuration No :           30
+ ***current normalized configurational entropy:   0.58651620370370372     
+ ***N1:        2027
+ KeepNo in SCF sub:        3228 natom:        6912 fraction:   0.46701388888888890     
+ 
+ #MC process at MC step:          31
+ The searched configuration No :           31
+ ***current normalized configurational entropy:   0.58130787037037035     
+ ***N1:        2009
+ KeepNo in SCF sub:        3188 natom:        6912 fraction:   0.46122685185185186     
+ 
+ #MC process at MC step:          32
+ The searched configuration No :           32
+ ***current normalized configurational entropy:   0.58043981481481477     
+ ***N1:        2006
+ KeepNo in SCF sub:        3172 natom:        6912 fraction:   0.45891203703703703     
+ 
+ #MC process at MC step:          33
+ The searched configuration No :           33
+ ***current normalized configurational entropy:   0.58015046296296291     
+ ***N1:        2005
+ KeepNo in SCF sub:        3154 natom:        6912 fraction:   0.45630787037037035     
+ 
+ #MC process at MC step:          34
+ The searched configuration No :           34
+ ***current normalized configurational entropy:   0.57609953703703709     
+ ***N1:        1991
+ KeepNo in SCF sub:        3127 natom:        6912 fraction:   0.45240162037037035     
+ 
+ #MC process at MC step:          35
+ The searched configuration No :           35
+ ***current normalized configurational entropy:   0.56857638888888884     
+ ***N1:        1965
+ KeepNo in SCF sub:        3099 natom:        6912 fraction:   0.44835069444444442     
+ 
+ #MC process at MC step:          36
+ The searched configuration No :           36
+ ***current normalized configurational entropy:   0.56221064814814814     
+ ***N1:        1943
+ KeepNo in SCF sub:        3061 natom:        6912 fraction:   0.44285300925925924     
+ 
+ #MC process at MC step:          37
+ The searched configuration No :           37
+ ***current normalized configurational entropy:   0.55526620370370372     
+ ***N1:        1919
+ KeepNo in SCF sub:        3037 natom:        6912 fraction:   0.43938078703703703     
+ 
+ #MC process at MC step:          38
+ The searched configuration No :           38
+ ***current normalized configurational entropy:   0.55063657407407407     
+ ***N1:        1903
+ KeepNo in SCF sub:        3018 natom:        6912 fraction:   0.43663194444444442     
+ 
+ #MC process at MC step:          39
+ The searched configuration No :           39
+ ***current normalized configurational entropy:   0.54600694444444442     
+ ***N1:        1887
+ KeepNo in SCF sub:        3001 natom:        6912 fraction:   0.43417245370370372     
+ 
+ #MC process at MC step:          40
+ The searched configuration No :           40
+ ***current normalized configurational entropy:   0.54253472222222221     
+ ***N1:        1875
+ KeepNo in SCF sub:        2978 natom:        6912 fraction:   0.43084490740740738     
+ 
+ #MC process at MC step:          41
+ The searched configuration No :           41
+ ***current normalized configurational entropy:   0.53993055555555558     
+ ***N1:        1866
+ KeepNo in SCF sub:        2968 natom:        6912 fraction:   0.42939814814814814     
+ 
+ #MC process at MC step:          42
+ The searched configuration No :           42
+ ***current normalized configurational entropy:   0.53645833333333337     
+ ***N1:        1854
+ KeepNo in SCF sub:        2948 natom:        6912 fraction:   0.42650462962962965     
+ 
+ #MC process at MC step:          43
+ The searched configuration No :           43
+ ***current normalized configurational entropy:   0.53559027777777779     
+ ***N1:        1851
+ KeepNo in SCF sub:        2929 natom:        6912 fraction:   0.42375578703703703     
+ 
+ #MC process at MC step:          44
+ The searched configuration No :           44
+ ***current normalized configurational entropy:   0.52835648148148151     
+ ***N1:        1826
+ KeepNo in SCF sub:        2907 natom:        6912 fraction:   0.42057291666666669     
+ 
+ #MC process at MC step:          45
+ The searched configuration No :           45
+ ***current normalized configurational entropy:   0.52748842592592593     
+ ***N1:        1823
+ KeepNo in SCF sub:        2879 natom:        6912 fraction:   0.41652199074074076     
+ 
+ #MC process at MC step:          46
+ The searched configuration No :           46
+ ***current normalized configurational entropy:   0.52228009259259256     
+ ***N1:        1805
+ KeepNo in SCF sub:        2864 natom:        6912 fraction:   0.41435185185185186     
+ 
+ #MC process at MC step:          47
+ The searched configuration No :           47
+ ***current normalized configurational entropy:   0.51591435185185186     
+ ***N1:        1783
+ KeepNo in SCF sub:        2840 natom:        6912 fraction:   0.41087962962962965     
+ 
+ #MC process at MC step:          48
+ The searched configuration No :           48
+ ***current normalized configurational entropy:   0.51331018518518523     
+ ***N1:        1774
+ KeepNo in SCF sub:        2822 natom:        6912 fraction:   0.40827546296296297     
+ 
+ #MC process at MC step:          49
+ The searched configuration No :           49
+ ***current normalized configurational entropy:   0.51273148148148151     
+ ***N1:        1772
+ KeepNo in SCF sub:        2824 natom:        6912 fraction:   0.40856481481481483     
+ 
+ #MC process at MC step:          50
+ The searched configuration No :           50
+ ***current normalized configurational entropy:   0.51244212962962965     
+ ***N1:        1771
+ KeepNo in SCF sub:        2801 natom:        6912 fraction:   0.40523726851851855     
+ 
+ #MC process at MC step:          51
+ The searched configuration No :           51
+ ***current normalized configurational entropy:   0.51157407407407407     
+ ***N1:        1768
+ KeepNo in SCF sub:        2797 natom:        6912 fraction:   0.40465856481481483     
+ 
+ #MC process at MC step:          52
+ The searched configuration No :           52
+ ***current normalized configurational entropy:   0.50491898148148151     
+ ***N1:        1745
+ KeepNo in SCF sub:        2781 natom:        6912 fraction:   0.40234375000000000     
+ 
+ #MC process at MC step:          53
+ The searched configuration No :           53
+ ***current normalized configurational entropy:   0.50231481481481477     
+ ***N1:        1736
+ KeepNo in SCF sub:        2761 natom:        6912 fraction:   0.39945023148148145     
+ 
+ #MC process at MC step:          54
+ The searched configuration No :           54
+ ***current normalized configurational entropy:   0.50000000000000000     
+ ***N1:        1728
+ KeepNo in SCF sub:        2755 natom:        6912 fraction:   0.39858217592592593     
+ 
+ #MC process at MC step:          55
+ The searched configuration No :           55
+ ***current normalized configurational entropy:   0.49884259259259262     
+ ***N1:        1724
+ KeepNo in SCF sub:        2721 natom:        6912 fraction:   0.39366319444444442     
+ 
+ #MC process at MC step:          57
+ The searched configuration No :           56
+ ***current normalized configurational entropy:   0.49710648148148145     
+ ***N1:        1718
+ KeepNo in SCF sub:        2728 natom:        6912 fraction:   0.39467592592592593     
+ 
+ #MC process at MC step:          59
+ The searched configuration No :           57
+ ***current normalized configurational entropy:   0.49074074074074076     
+ ***N1:        1696
+ KeepNo in SCF sub:        2698 natom:        6912 fraction:   0.39033564814814814     
+ 
+ #MC process at MC step:          60
+ The searched configuration No :           58
+ ***current normalized configurational entropy:   0.48726851851851855     
+ ***N1:        1684
+ KeepNo in SCF sub:        2675 natom:        6912 fraction:   0.38700810185185186     
+ 
+ #MC process at MC step:          63
+ The searched configuration No :           59

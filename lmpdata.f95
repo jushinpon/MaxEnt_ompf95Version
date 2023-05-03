@@ -14,16 +14,16 @@ write(112,*)' '
 write(112,'(i8,1x,a)')natom,'atoms'
 write(112,'(i8,1x,a)')elemtype,'atom types'
 write(112,*)' '
-write(112,'(f10.3,1x,f10.3,1x,a,1x,a)')0.0,xl,'xlo','xhi'
-write(112,'(f10.3,1x,f10.3,1x,a,1x,a)')0.0,yl,'ylo','yhi'
-write(112,'(f10.3,1x,f10.3,1x,a,1x,a)')0.0,zl,'zlo','zhi'
+write(112,'(f10.3,1x,f10.3,1x,a,1x,a)')xlo,xhi,'xlo','xhi'
+write(112,'(f10.3,1x,f10.3,1x,a,1x,a)')ylo,yhi,'ylo','yhi'
+write(112,'(f10.3,1x,f10.3,1x,a,1x,a)')zlo,zhi,'zlo','zhi'
 write(112,*)' '
 write(112,*)'Atoms'
 write(112,*)' '
 
 do 1 i=1,natom
-	write(112,'(i8,1x,i8,1x,f10.3,1x,f10.3,1x,f10.3)')i,atype(i),x(i), &
-                     y(i),z(i)
+	write(112,'(i8,1x,i8,1x,f10.3,1x,f10.3,1x,f10.3)')i,atype(i),x(i)+xlo, &
+                     y(i)+ylo,z(i)+zlo
 	!write(*,*)i,real_lattice
     !write(*,*)x(i),y(i),z(i)	
 1 continue
