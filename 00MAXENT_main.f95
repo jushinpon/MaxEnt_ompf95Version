@@ -142,6 +142,8 @@ do 112 imc=1,iterMC
         write(*,*)"*** CURRENT best:",Entmin/dble(natom)
 	    write(*,*) "*** The first three nearest neighbour numbers for current best***"	
         write(*,*) "***N1:",NN(1)/2
+        write(*,*) "***N2:",NN(2)/2
+        write(*,*) "***N3:",NN(3)/2
         write(*,*) "KeepNo in SCF sub:",keepNo,"natom:",natom, "fraction: ",dble(keepNo)/dble(natom)			
 	    write(*,*)""
 	endif
@@ -160,16 +162,16 @@ do 112 imc=1,iterMC
         !$OMP PARALLEL reduction(+:NN)
         !$OMP DO PRIVATE(i,neID) 								
     	do  i=1,natom
-    		!do 211 ine =1,3 !neighbor atom type
-    		ntemp = CN_No(i,1)
+    		do 211 ine =1,3 !neighbor atom type
+    		ntemp = CN_No(i,ine)
     			do  neID = 1,ntemp ! atom ID of a neighbor type
-    			JID = CN_ID(i,1,neID)          
+    			JID = CN_ID(i,ine,neID)          
     			if(atype(i) .eq. atype(JID))then
                     !!$OMP ATOMIC UPDATE
-    				NN(1) = NN(1) + 1
+    				NN(ine) = NN(ine) + 1
     			endif 
     	        enddo                      
-    	   ! 211 continue  						
+    	    211 continue  						
     	enddo  
         !$OMP END DO
         !$OMP END PARALLEL 			
@@ -181,6 +183,8 @@ do 112 imc=1,iterMC
         write(101,*)"The searched configuration No : ",nbetter
         write(101,*) "***current normalized configurational entropy: ",confentropy/dble(natom)
         write(101,*) "***N1:",NN(1)/2
+        write(101,*) "***N2:",NN(2)/2
+        write(101,*) "***N3:",NN(3)/2
         write(101,*) "KeepNo in SCF sub:",keepNo,"natom:",natom, "fraction: ",dble(keepNo)/dble(natom)			
 
         if(keepNo .eq. 0 )then !all bad atoms are done
@@ -188,6 +192,8 @@ do 112 imc=1,iterMC
 			write(*,*)"***keepNo = 0, All atoms with larger scoring values have been processed!!***"
 			write(*,*)"YOU CAN TERMINATE YOUR CODE or WAIT for BETTER by MC after several more MC runs!!!!!!!!!!!"
 			write(*,*) "***N1:",NN(1)/2
+			write(*,*) "***N2:",NN(2)/2
+			write(*,*) "***N3:",NN(3)/2
         
 			write(101,*)"***keepNo = 0, All atoms with larger scoring values have been processed!!***"
 			write(101,*)"YOU CAN TERMINATE YOUR CODE after several more MC runs  !!!!!!!!!!!"			

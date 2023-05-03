@@ -21,17 +21,18 @@ confentropy = 0.0 ! configurational entropy
 !!! 
 !do 1 i=1,natom
 do  i=1,natom
-do neID = 1,CN_No(i,1) ! atom ID of a neighbor type
-          JID = CN_ID(i,1,neID)
-            if(atype(i) .eq. atype(JID))then !only consider atoms with the same type
-				confentropy = confentropy + 1.0
-            !!$OMP ATOMIC UPDATE
-				!atomentropy(i) = atomentropy(i) + 1.0                    
-             endif           
-!           endif		  
-!3 		continue                      
-enddo                      
-
+   do 2 ine =1,3 !neighbor atom type
+      do neID = 1,CN_No(i,ine) ! atom ID of a neighbor type
+                JID = CN_ID(i,ine,neID)
+                  if(atype(i) .eq. atype(JID))then !only consider atoms with the same type
+      				confentropy = confentropy +  weight(ine)
+                  !!$OMP ATOMIC UPDATE
+      				!atomentropy(i) = atomentropy(i) + 1.0                    
+                   endif           
+      !           endif		  
+      !3 		continue                      
+      enddo                      
+   2 continue
 enddo
 
 !$OMP END DO

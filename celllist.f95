@@ -133,14 +133,18 @@ do 3 i=1,natom
 					  vneimin = 1000.d0 ! initial value for finding the proper neighbor ID
 					  neitypeID = 0 !integer
 					  do icn =1,3
-                        vnei = abs( ( r/rdfpeak(icn) ) - 1 )
+                        !vnei = abs( ( r/rdfpeak(icn) ) - 1 )
+                        diff = r - rdfpeak(icn)
 						!write(*,*)"icn: ",icn
 						!write(*,*)"vnei: ",vnei
-						if(vnei .le. vneimin)then
+						!if(vnei .le. vneimin)then
+						if(diff .le. 0.0)then
 						  vneimin = vnei
 						  neitypeID = icn
+						  exit
 						endif
 					  enddo
+
 					  if(neitypeID .eq. 0)then
 					    write(*,*)"classifying neighbor type error!"
 						write(*,*)"ref i: ",i
@@ -188,15 +192,15 @@ ave_counter = ave_counter/dble(natom) !get the average nearest neighbour atoms
 do i =1,5
 print *,"********average atom number for ",i, "neighbours: ",ave_counter(i)
 enddo
-!pause
+
 !write(*,*)'2'
 !if(second)then
 	write(*,*)'weight of 2nd neighborhood '
 	weight = 1.d0
 	weight(1) = 1.e6 !first Id is the neighbour ID, the second is atom type
-	weight(2) = 10.
+	weight(2) = 100.
 	!more than 1/3 third neighbour atoms are different types can make atomentropy lower than 0
-	weight(3) = -(weight(2)*ave_counter(2)/2.0) / (ave_counter(3)/5.0)  
+	weight(3) = 0.0  
 	weight(4) = (-1.e-2) !not used 
 	weight(5) = (-1.e-1) !not used
 !else

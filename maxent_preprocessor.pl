@@ -1,5 +1,6 @@
 =b
 This script helps you to convert a lmp data file to maxent fortran code input file (00input.dat).
+use maxent_lurm.sh to submit your job. partition and other setting should be modifed for your job.
 =cut
 
 use strict;
