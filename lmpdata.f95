@@ -22,8 +22,8 @@ write(112,*)'Atoms'
 write(112,*)' '
 
 do 1 i=1,natom
-	write(112,'(i8,1x,i8,1x,f10.3,1x,f10.3,1x,f10.3)')i,atype(i),x(i)+xlo, &
-                     y(i)+ylo,z(i)+zlo
+	write(112,'(i8,1x,i8,1x,f10.3,1x,f10.3,1x,f10.3)')i,atype(i),x(i)+xdmin, &
+                     y(i)+ydmin,z(i)+zdmin
 	!write(*,*)i,real_lattice
     !write(*,*)x(i),y(i),z(i)	
 1 continue

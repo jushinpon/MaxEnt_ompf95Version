@@ -151,7 +151,8 @@ do 112 imc=1,iterMC
     afterconfentropy = confentropy
     ! output the lowest potential, atype, atomentropy 
     !!! Keep the better one
-
+!write(*,*)"**Entmin = confentropy:",Entmin,confentropy
+  
     if(confentropy .lt. Entmin)then
         nbetter = nbetter + 1
         Entmin = confentropy
@@ -177,8 +178,8 @@ do 112 imc=1,iterMC
         !$OMP END PARALLEL 			
 				
         !Entkeep = Entmin ! for MC
-        noutput = mod(nbetter,20)
-        call lmpdata("00MC",noutput)
+        !noutput = mod(nbetter,20)
+        call lmpdata("00MC",nbetter)
         write(101,*)"#MC process at MC step:", imc
         write(101,*)"The searched configuration No : ",nbetter
         write(101,*) "***current normalized configurational entropy: ",confentropy/dble(natom)

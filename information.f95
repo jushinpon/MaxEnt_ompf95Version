@@ -14,7 +14,7 @@ real*8,allocatable::xmin(:),ymin(:),zmin(:),atomentropy(:),katomentropy(:),pairw
 integer,allocatable::CN_No(:,:),CN_ID(:,:,:),atype(:),aid(:),tempatype(:)
 integer natom,iterMC,inirand,snatom
 character*30 name
-real*8 rdfpeak(5),weight(5),ux(10),uy(10),uz(10) ! the first five rdf peaks from MS and entropy weight
+real*8 rdfpeak(5),weight(5),ux(10),uy(10),uz(10),xmind,ymind,zmind ! the first five rdf peaks from MS and entropy weight
 real*8 xl,yl,zl,half_xl,half_yl,half_zl,rlist,confentropy,real_lattice
 real*8 xlo,xhi,ylo,yhi,zlo,zhi
 real*8 Entmin,kT,Entkeep,acceptratio,filterValue ! for MC
@@ -117,9 +117,12 @@ do 100 i=1,natom
     endif 
 100 continue
 !move all atoms within the box
-x = x - xlo
-y = y - ylo
-z = z - zlo
+xdmin= minval(x)
+ydmin= minval(y)
+zdmin= minval(z)
+x = x - xdmin
+y = y - ydmin
+z = z - zdmin
 xl = xhi-xlo
 yl = yhi-ylo
 zl = zhi-zlo

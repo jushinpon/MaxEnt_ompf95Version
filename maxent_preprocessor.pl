@@ -77,7 +77,7 @@ my $here_doc =<<"END_MESSAGE";
 # The input file for MaxEnt developed by Prof. Shin-Pon Ju
 ####### begin below
 #!the total MC iteration times,te total initial random search times
-5000 10
+50000 10
 #! PBC in x, y, and z
 True True True 
 #! rlist for cell list for the third nearest neighbour atoms

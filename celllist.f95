@@ -40,136 +40,94 @@ rlistsq = rlist*rlist
 allocate(binpnt(nxcell*nycell*nzcell))
 allocate(bin(natom))
        
-binpnt=0 ! set the array to be 0 initially
-bin =0
-
-! need to do once only
-do 2 i=1,natom
-! all fractional coordinates should be positive
-	 ix=int(aint(x(i)/rlist)+1)
-!if(i.eq.1 .or. i.eq. 401) write(*,*)"i= ",i," ix= ",ix,nxcell,x(i)
-	 
-	 if(ix .gt. nxcell)ix=nxcell
-	 iy=int(aint(y(i)/rlist)+1)
-!	 if(i.eq.1 .or. i.eq. 401) write(*,*)"i= ",i," iy= ",iy,nycell
-     if(iy .gt. nycell)iy=nycell 
-	 iz=int(aint(z(i)/rlist)+1)
-!	 if(i.eq.1 .or. i.eq. 401) write(*,*)"i= ",i," iz= ",iz,nzcell
-     if(iz .gt. nzcell)iz=nzcell
-
-	 ib=(iz-1)*(nxcell*nycell)+(iy-1)*nxcell+ix
-!.... ib is the cell ID atom i belongs to......
-   	 bin(i)=binpnt(ib)
-	 binpnt(ib)=i ! finally, binpnt(ib) keeps the lagest ID in this cell
-!example, atoms 2,5,7 in cell 1 (ib = 1)
-!ib=1,i = 2 --> bin(2) = binpnt(1) = 0 (first time), binpnt(1) = 2
-!ib=1,i = 5 --> bin(5) = binpnt(1) = 2 (from the above value), binpnt(1) = 5
-!ib=1,i = 7 --> bin(7) = binpnt(1) = 5 (from the above value), binpnt(1) = 7
-! The final value of binpnt(1) after the natom loop will keep the larger ID in cell 1
-2	continue
+!binpnt=0 ! set the array to be 0 initially
+!bin =0
+!
+!! need to do once only
+!do 2 i=1,natom
+!! all fractional coordinates should be positive
+!	 ix=int(aint(x(i)/rlist)+1)
+!!if(i.eq.1 .or. i.eq. 401) write(*,*)"i= ",i," ix= ",ix,nxcell,x(i)
+!	 
+!	 if(ix .gt. nxcell)ix=nxcell
+!	 iy=int(aint(y(i)/rlist)+1)
+!!	 if(i.eq.1 .or. i.eq. 401) write(*,*)"i= ",i," iy= ",iy,nycell
+!     if(iy .gt. nycell)iy=nycell 
+!	 iz=int(aint(z(i)/rlist)+1)
+!!	 if(i.eq.1 .or. i.eq. 401) write(*,*)"i= ",i," iz= ",iz,nzcell
+!     if(iz .gt. nzcell)iz=nzcell
+!
+!	 ib=(iz-1)*(nxcell*nycell)+(iy-1)*nxcell+ix
+!!.... ib is the cell ID atom i belongs to......
+!   	 bin(i)=binpnt(ib)
+!	 binpnt(ib)=i ! finally, binpnt(ib) keeps the lagest ID in this cell
+!!example, atoms 2,5,7 in cell 1 (ib = 1)
+!!ib=1,i = 2 --> bin(2) = binpnt(1) = 0 (first time), binpnt(1) = 2
+!!ib=1,i = 5 --> bin(5) = binpnt(1) = 2 (from the above value), binpnt(1) = 5
+!!ib=1,i = 7 --> bin(7) = binpnt(1) = 5 (from the above value), binpnt(1) = 7
+!! The final value of binpnt(1) after the natom loop will keep the larger ID in cell 1
+!2	continue
 
  CN_No = 0
  CN_ID = 0
 	
 	
 ! get the interaction energy here for Monte Carlo
-do 3 i=1,natom
-	 xtmp=x(i)													 
-	 ytmp=y(i)
-	 ztmp=z(i)
-	
-	 ixx=int(aint(xtmp/rlist)+1)
-	 if(ixx .gt. nxcell) ixx=nxcell !the atom is just located at the boundary
-	 iyy=int(aint(ytmp/rlist)+1)
-	 if(iyy .gt. nycell)iyy=nycell
-	 izz=int(aint(ztmp/rlist)+1)
-	 if(izz .gt. nzcell)izz=nzcell
-!       write(*,*)"ixx,iyy,izz= ",ixx,iyy,izz
-! the following goes through the j atom cell based on the reference atom i's cell
-	  do 4 k1=-1,1
-	    do 5 k2=-1,1
-	      do 6 k3=-1,1
-	       ix=ixx+k1
-	       if(ix.lt.1) ix=nxcell
-	       if(ix.gt.nxcell) ix=1
-
-           iy=iyy+k2
-	       if(iy.lt.1) iy=nycell
-	       if(iy.gt.nycell) iy=1
-
-	       iz=izz+k3
-           if(iz.lt.1) iz=nzcell
-	       if(iz.gt.nzcell) iz=1
-
-     	   ib=(iz-1)*(nxcell)*(nycell)+(iy-1)*nxcell+ix !bin ID of atom j's cell
-	       j=binpnt(ib)	! the higest ID in cell ib
-!             write(*,*)"ib and j ",ib,j
-10            if(j.ne.0)then  ! cell without atoms or atoms in this cell have been gone through        
-
-                 if(j.ne.i)then !! i-j and j-i pairs are considered
-                    dx=xtmp-x(j)
-                    dy=ytmp-y(j)
-                    dz=ztmp-z(j) 
+do 3 i=1,natom-1
+do 4 j=i+1,natom
+    dx=x(i)-x(j)
+    dy=y(i)-y(j)
+    dz=z(i)-z(j) 
            
-      		   if (abs(dx) > half_xl .and. pbcx) then
-                   dx = dx - sign(xl,dx)
-               endif     
-	           if (abs(dy) > half_yl .and. pbcy)then
-                   dy = dy - sign(yl,dy)
-               endif    
-	           if (abs(dz) > half_zl .and. pbcz)then
-                   dz = dz - sign(zl,dz)
-               endif    
-                    rsq=dx*dx + dy*dy + dz*dz
+    if (abs(dx) > half_xl .and. pbcx) then
+        dx = dx - sign(xl,dx)
+    endif     
+	if (abs(dy) > half_yl .and. pbcy)then
+        dy = dy - sign(yl,dy)
+    endif    
+	if (abs(dz) > half_zl .and. pbcz)then
+        dz = dz - sign(zl,dz)
+    endif    
+    rsq=dx*dx + dy*dy + dz*dz
 !write(*,*)"Check"
-!write(*,*)i,j,rsq
-                    if(rsq .le. rlistsq)then           
+    if(rsq .le. rlistsq)then           
+        r=dsqrt(rsq)
+	   !write(*,*)i,j,r
+                  ! do the classification for five types
+	  	vneimin = 1000.d0 ! initial value for finding the proper neighbor ID
+	  	neitypeID = 0 !integer
+	  	do icn =1,3
+        	!vnei = abs( ( r/rdfpeak(icn) ) - 1 )
+        	diff = r - rdfpeak(icn)
+		!write(*,*)"icn: ",icn
+		!write(*,*)"vnei: ",vnei
+		!if(vnei .le. vneimin)then
+			if(diff .le. 0.0)then
+			  vneimin = vnei
+			  neitypeID = icn
+			  exit
+			endif
+	  	enddo
 
-! begin classify the neighbor types of atom i                         index=index+1
-
-                       r=dsqrt(rsq)
-					   !write(*,*)i,j,r
-                      ! do the classification for five types
-					  vneimin = 1000.d0 ! initial value for finding the proper neighbor ID
-					  neitypeID = 0 !integer
-					  do icn =1,3
-                        !vnei = abs( ( r/rdfpeak(icn) ) - 1 )
-                        diff = r - rdfpeak(icn)
-						!write(*,*)"icn: ",icn
-						!write(*,*)"vnei: ",vnei
-						!if(vnei .le. vneimin)then
-						if(diff .le. 0.0)then
-						  vneimin = vnei
-						  neitypeID = icn
-						  exit
-						endif
-					  enddo
-
-					  if(neitypeID .eq. 0)then
-					    write(*,*)"classifying neighbor type error!"
-						write(*,*)"ref i: ",i
-						write(*,*)"ref j: ",j
-						write(*,*)"distance r: ",r
-						!pause					    
-					  else
-					    CN_No(i,neitypeID) = CN_No(i,neitypeID) + 1
-					    itemp = CN_No(i,neitypeID)
-                        CN_ID(i,neitypeID,itemp) = j
-					  endif
+  		if(neitypeID .eq. 0)then
+	    	write(*,*)"classifying neighbor type error!"
+			write(*,*)"ref i: ",i
+			write(*,*)"ref j: ",j
+			write(*,*)"distance r: ",r
+		!pause					    
+	  	else
+			CN_No(i,neitypeID) = CN_No(i,neitypeID) + 1
+			CN_No(j,neitypeID) = CN_No(j,neitypeID) + 1
+!if(i .eq. 6909 .and. neitypeID .eq.2) write(*,*)i,j,rsq,r, CN_No(i,neitypeID)
+			itemp = CN_No(i,neitypeID)
+			jtemp = CN_No(j,neitypeID)
+            CN_ID(i,neitypeID,itemp) = j
+            CN_ID(j,neitypeID,jtemp) = i
+		endif
 	                                         
-                    endif !rsq .le. rlistsq
-                  
-
-                  endif !j.ne.i
-                   j=bin(j)
-				 goto 10
-
-	            endif!j.ne.0
-6	      continue ! loop of z cell
-5	    continue ! loop of y cell
-4	  continue ! loop of x cell
-
+    endif !rsq .le. rlistsq
 !      ncount(i)=index
+4 continue ! loop of natom
 3 continue ! loop of natom
 
 deallocate(binpnt)
@@ -182,7 +140,8 @@ do 111 i=1,natom
 	 ytmp=y(i)
 	 ztmp=z(i)
 	do 211 ine =1,3 !neighbor atom type		
-       ave_counter(ine) = ave_counter(ine)+CN_No(i,ine)                     
+       ave_counter(ine) = ave_counter(ine)+CN_No(i,ine)
+	   !if (ine .eq. 2) write(*,*)i,":",CN_No(i,ine)                     
 211   continue
    ! write(*,*)"atom ",i," atomentropy: ",atomentropy(i)  						
 111 continue
@@ -190,15 +149,15 @@ do 111 i=1,natom
 ave_counter = ave_counter/dble(natom) !get the average nearest neighbour atoms
 
 do i =1,5
-print *,"********average atom number for ",i, "neighbours: ",ave_counter(i)
+	print *,"********average atom number for ",i, "neighbours: ",ave_counter(i)
 enddo
 
 !write(*,*)'2'
 !if(second)then
 	write(*,*)'weight of 2nd neighborhood '
 	weight = 1.d0
-	weight(1) = 1.e6 !first Id is the neighbour ID, the second is atom type
-	weight(2) = 100.
+	weight(1) = 2.e6 !first Id is the neighbour ID, the second is atom type
+	weight(2) = 1.e2
 	!more than 1/3 third neighbour atoms are different types can make atomentropy lower than 0
 	weight(3) = 0.0  
 	weight(4) = (-1.e-2) !not used 
