@@ -156,10 +156,10 @@ enddo
 !if(second)then
 	write(*,*)'weight of 2nd neighborhood '
 	weight = 1.d0
-	weight(1) = 2.e6 !first Id is the neighbour ID, the second is atom type
-	weight(2) = 1.e2
+	weight(1) = 1.e6 !first Id is the neighbour ID, the second is atom type
+	weight(2) = 0.0
 	!more than 1/3 third neighbour atoms are different types can make atomentropy lower than 0
-	weight(3) = 0.0  
+	weight(3) = -10.0  
 	weight(4) = (-1.e-2) !not used 
 	weight(5) = (-1.e-1) !not used
 !else
