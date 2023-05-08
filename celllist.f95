@@ -15,30 +15,30 @@ integer nxcell,nycell,nzcell
 dimension ave_counter(5)
 
 ! we need to modify the value of original rlist first
-nxcell = 0
-nycell = 0
-nzcell = 0
-
-do 21 i=1,natom
-! all fractional coordinates should be positive
-	 ix=int(dint(x(i)/rlist)+1)
-	 iy=int(dint(y(i)/rlist)+1)
-	 iz=int(dint(z(i)/rlist)+1)
-	 if(ix .ge. nxcell) nxcell = ix
-	 if(iy .ge. nycell) nycell = iy
-	 if(iz .ge. nzcell) nzcell = iz
-21 continue
-
-if(nxcell .lt. 3 .or. nycell .lt. 3 .or.nzcell .lt. 3) then
-    write(*,*)"Cells are fewer than 3. STOP here!!"
-	write(*,*)"nxcell",nxcell,"nycell",nycell,"nzcell",nzcell
-	stop
-endif
+!nxcell = 0
+!nycell = 0
+!nzcell = 0
+!
+!do 21 i=1,natom
+!! all fractional coordinates should be positive
+!	 ix=int(dint(x(i)/rlist)+1)
+!	 iy=int(dint(y(i)/rlist)+1)
+!	 iz=int(dint(z(i)/rlist)+1)
+!	 if(ix .ge. nxcell) nxcell = ix
+!	 if(iy .ge. nycell) nycell = iy
+!	 if(iz .ge. nzcell) nzcell = iz
+!21 continue
+!
+!if(nxcell .lt. 3 .or. nycell .lt. 3 .or.nzcell .lt. 3) then
+!    write(*,*)"Cells are fewer than 3. STOP here!!"
+!	write(*,*)"nxcell",nxcell,"nycell",nycell,"nzcell",nzcell
+!	stop
+!endif
 
 rlistsq = rlist*rlist
 
-allocate(binpnt(nxcell*nycell*nzcell))
-allocate(bin(natom))
+!allocate(binpnt(nxcell*nycell*nzcell))
+!allocate(bin(natom))
        
 !binpnt=0 ! set the array to be 0 initially
 !bin =0
@@ -130,8 +130,8 @@ do 4 j=i+1,natom
 4 continue ! loop of natom
 3 continue ! loop of natom
 
-deallocate(binpnt)
-deallocate(bin)
+!deallocate(binpnt)
+!deallocate(bin)
 
 ave_counter = 0
 
@@ -174,29 +174,29 @@ enddo
 !endif
 
  !6 is the second nearest Number of a reference atom
-pairweight = dble(weight(1)) ! initial values for all pairs
-!pairweight = 1.0 ! initial values for all pairs
-pairweight(1,2) = 0.0 !-4.566
-pairweight(1,3) = 0.0 !-3.966
-pairweight(1,4) = 0.0 !-5.467
-pairweight(1,5) = 0.0 !-4.783
-pairweight(2,1) = 0.0 !-4.566
-pairweight(2,3) = 0.0 !-4.899
-pairweight(2,4) = 0.0 !-6.373
-pairweight(2,5) = 0.0 !-5.510
-pairweight(3,1) = 0.0 !-3.966
-pairweight(3,2) = 0.0 !-4.899
-pairweight(3,4) = 0.0 !-4.985
-pairweight(3,5) = 0.0 !-4.979
-pairweight(4,1) = 0.0 !-5.467
-pairweight(4,2) = 0.0 !-6.373
-pairweight(4,3) = 0.0 !-4.985
-pairweight(4,5) = 0.0 !-6.738
-pairweight(5,1) = 0.0 !-4.783
-pairweight(5,2) = 0.0 !-5.510
-pairweight(5,3) = 0.0 !-4.979
-pairweight(5,4) = 0.0 !-6.738
-pairweight = pairweight/dble(weight(1))
+!pairweight = dble(weight(1)) ! initial values for all pairs
+!!pairweight = 1.0 ! initial values for all pairs
+!pairweight(1,2) = 0.0 !-4.566
+!pairweight(1,3) = 0.0 !-3.966
+!pairweight(1,4) = 0.0 !-5.467
+!pairweight(1,5) = 0.0 !-4.783
+!pairweight(2,1) = 0.0 !-4.566
+!pairweight(2,3) = 0.0 !-4.899
+!pairweight(2,4) = 0.0 !-6.373
+!pairweight(2,5) = 0.0 !-5.510
+!pairweight(3,1) = 0.0 !-3.966
+!pairweight(3,2) = 0.0 !-4.899
+!pairweight(3,4) = 0.0 !-4.985
+!pairweight(3,5) = 0.0 !-4.979
+!pairweight(4,1) = 0.0 !-5.467
+!pairweight(4,2) = 0.0 !-6.373
+!pairweight(4,3) = 0.0 !-4.985
+!pairweight(4,5) = 0.0 !-6.738
+!pairweight(5,1) = 0.0 !-4.783
+!pairweight(5,2) = 0.0 !-5.510
+!pairweight(5,3) = 0.0 !-4.979
+!pairweight(5,4) = 0.0 !-6.738
+!pairweight = pairweight/dble(weight(1))
 !pairweight = 1.0
 
 !..................... finish cell list
