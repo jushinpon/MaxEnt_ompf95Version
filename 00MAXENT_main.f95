@@ -55,7 +55,8 @@ call init_random_seed()
 !call conf_entropy !first evaluation
 do 111 ini=1,inirand
 print *,"******rand step times: ",ini
-        call shuffle(natom,atype(:))
+        call shuffle
+        !call shuffle(natom,atype(:))
         call conf_entropy(natom,atype(:),confentropy,weight(:),CN_No(:,:),CN_ID(:,:,:))
 
     if(confentropy .le. Entmin)then
@@ -119,8 +120,11 @@ print *,"******rand step times: ",ini
     afterconfentropy = confentropy
     nbetter = 0
     naccept = 0
+        !call lmpdata("00imc",0)
 
 do 112 imc=1,iterMC
+        !call lmpdata("00imc",imc)
+
 !call cpu_time(start)!not correct for openmp code
 !$ start = omp_get_wtime()
         !acceptratio gradually becomes smaller with the increasing MC step, like annealing
@@ -152,7 +156,7 @@ do 112 imc=1,iterMC
     ! output the lowest potential, atype, atomentropy 
     !!! Keep the better one
 !write(*,*)"**Entmin = confentropy:",Entmin,confentropy
-  
+    !confentropy = Entmin - 10.
     if(confentropy .lt. Entmin)then
         nbetter = nbetter + 1
         Entmin = confentropy
@@ -254,7 +258,12 @@ do 112 imc=1,iterMC
         endif
         naccept = 0 ! activate a new counter
     endif
+        !call lmpdata("00bks",imc)
+
+       ! call shuffle
         call kshuffle
+        !call lmpdata("00aks",imc)
+!pause
       !  call cpu_time(finish)
       !$ finish = omp_get_wtime()  
     !  !$  print *," "

@@ -4,6 +4,12 @@ use information
 implicit real*8(a-h,o-z)   
 integer i1,i2,ishift
 real*8 r
+integer natom1
+integer atype1(natom)
+integer :: i, randpos, temp
+
+natom1 = natom
+atype1 = atype
 
 ikNo = int(keepNo*0.05)
 if(ikNo .lt. 10) ikNo = 10
@@ -18,13 +24,13 @@ if (irepeat .gt. 20) cycle ! skip this loop
 	call random_number(r)
     i2 = int(dint(natom*r)+1)
 	if(i1 .ne. i2 .and. atype(i1) .ne. atype(i2)) then
-    	ishift = atype(i1)
-    	atype(i1) = atype(i2)
-		atype(i2) = ishift
+    	ishift = atype1(i1)
+    	atype1(i1) = atype1(i2)
+		atype1(i2) = ishift
 	else
 		goto 12345		  
 	endif
 1 continue ! atom type swap loop
-
+atype = atype1
 return
 end
