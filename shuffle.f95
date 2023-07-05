@@ -10,12 +10,17 @@ atype1 = atype
 !!$OMP PARALLEL PRIVATE(i) shared(atype)
 !!$OMP DO
 do i = natom1, 2, -1
+if (atype(i) .ne. itypeNotSwap )then
+
   call random_number(r)
   randpos = int(r * i) + 1
   if (randpos .gt. i) randpos = i 
   temp = atype1(randpos)
-  atype1(randpos) = atype1(i)
-  atype1(i) = temp
+    if (temp .ne. itypeNotSwap )then
+      atype1(randpos) = atype1(i)
+      atype1(i) = temp
+    endif
+endif 
 end do
 !!$OMP END DO
 !!$OMP END PARALLEL  

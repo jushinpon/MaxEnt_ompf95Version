@@ -9,7 +9,8 @@ use Data::Dumper;
 use POSIX;
 use Cwd;
 
-open my $database ,"< HEC.data";#data file you want to apply maxent
+my $typeNoSwap = 5;# the type you don't want to swap
+open my $database ,"< optimized_elastic.data" or die "No dada file to read\n";#data file you want to apply maxent
 my @data =<$database>;
 close $database;
 map { s/^\s+|\s+$//g; } @data;
@@ -49,7 +50,7 @@ for (@data){
         $para{zhi} = $2;
     }
     #1 1 4.458517505863 1.201338326940 0.873835074284
-    elsif(/(\d+)\s+(\d+)\s+([+-]?\d*\.*\d*)\s+([+-]?\d*\.*\d*)\s+([+-]?\d*\.*\d*)$/){
+    elsif(/(\d+)\s+(\d+)\s+([+-]?\d*\.*\d*)\s+([+-]?\d*\.*\d*)\s+([+-]?\d*\.*\d*).*?$/){
         $counter++;
 		chomp ($1,$2,$3,$4,$5);
 		my $id = $1;
@@ -79,13 +80,15 @@ my $here_doc =<<"END_MESSAGE";
 #!the total MC iteration times,te total initial random search times
 50000 10
 #! PBC in x, y, and z
-True True True 
+True True True
+#!type not swaped
+$typeNoSwap 
 #! rlist for cell list for the third nearest neighbour atoms
-7.5
+5.3
 #!rdf peak(5) found by Ovito
+3.1
 4.5
-6.5
-7.5
+5.3
 8.6
 9.5
 #!total atom number and element type number for HEA

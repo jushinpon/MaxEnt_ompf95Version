@@ -74,7 +74,11 @@ rlistsq = rlist*rlist
 	
 ! get the interaction energy here for Monte Carlo
 do 3 i=1,natom-1
+if (atype(i) .ne. itypeNotSwap )then
+!write(*,*)itypeNotSwap,atype(i),i
+!pause
 do 4 j=i+1,natom
+if (atype(j) .ne. itypeNotSwap)then
     dx=x(i)-x(j)
     dy=y(i)-y(j)
     dz=z(i)-z(j) 
@@ -127,7 +131,9 @@ do 4 j=i+1,natom
 	                                         
     endif !rsq .le. rlistsq
 !      ncount(i)=index
+endif
 4 continue ! loop of natom
+endif
 3 continue ! loop of natom
 
 !deallocate(binpnt)

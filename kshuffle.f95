@@ -18,18 +18,20 @@ do 1 ikMC=1, ikNo
 	ikid = int(dint(keepNo*r)+1)
     i1 = keepeID(ikid) !site ID
 	irepeat  = 0 ! parameter to count the 1112 continuoue times
+	if (atype(i1) .eq. itypeNotSwap ) cycle
 ! pick the second one 
 12345 irepeat  = irepeat + 1
 if (irepeat .gt. 20) cycle ! skip this loop 
 	call random_number(r)
     i2 = int(dint(natom*r)+1)
-	if(i1 .ne. i2 .and. atype(i1) .ne. atype(i2)) then
+	if(i1 .ne. i2 .and. atype(i1) .ne. atype(i2) .and. atype(i2) .ne. itypeNotSwap ) then
     	ishift = atype1(i1)
     	atype1(i1) = atype1(i2)
 		atype1(i2) = ishift
 	else
 		goto 12345		  
 	endif
+
 1 continue ! atom type swap loop
 atype = atype1
 return

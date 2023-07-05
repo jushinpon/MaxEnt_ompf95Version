@@ -18,7 +18,7 @@ real*8 rdfpeak(5),weight(5),ux(10),uy(10),uz(10),xdmin,ydmin,zdmin ! the first f
 real*8 xl,yl,zl,half_xl,half_yl,half_zl,rlist,confentropy,real_lattice
 real*8 xlo,xhi,ylo,yhi,zlo,zhi
 real*8 Entmin,kT,Entkeep,acceptratio,filterValue ! for MC
-integer nadjust,naccept,keepNo ! for MC and counter for keeping ID with the large scoring values 
+integer nadjust,naccept,keepNo,itypeNotSwap ! for MC and counter for keeping ID with the large scoring values 
 integer,allocatable:: keepeID(:) ! keep ID with the large scoring values
 
 contains
@@ -42,6 +42,8 @@ allocate (MCtime(iterMC))
 MCtime = 0.0
 read(112,*) ! #! PBC in x, y, and z
 read(112,*) pbcx,pbcy,pbcz
+read(112,*) ! type not swaped
+read(112,*) itypeNotSwap
 read(112,*)! rlist for cell list 
 read(112,*)rlist
 write(*,*)'rlist: ', rlist
